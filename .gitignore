@@ -1,0 +1,19 @@
+# Node.js
+node_modules/
+.env
+uploads/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.env/
+
+# React
+/build
+
+# OS
+.DS_Store
+Thumbs.db
