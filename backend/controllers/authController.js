@@ -24,3 +24,9 @@ exports.login = async (req, res, next) => {
 exports.logout = (req, res) => {
   res.status(200).json({ message: 'Logged out' });
 };
+
+
+
+exports.refreshToken = (req, res) => {
+
+};
