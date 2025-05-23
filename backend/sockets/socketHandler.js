@@ -1,7 +1,8 @@
 // backend/sockets/socketHandler.js
 const clients = new Map();
 
-module.exports = (io) => {
+// module.exports = 
+exports.setupSocket = (io) => {
   io.on('connection', (socket) => {
     console.log('Client connected:', socket.id);
 
