@@ -1,0 +1,56 @@
+// backend/models/User.js
+const { DataTypes } = require('sequelize');
+const sequelize = require('../models');
+
+const User = sequelize.define('User', {
+  username: { type: DataTypes.STRING, allowNull: false, unique: true },
+  password: { type: DataTypes.STRING, allowNull: false }
+});
+
+module.exports = User;
+
+// backend/models/Schedule.js
+const { DataTypes } = require('sequelize');
+const sequelize = require('../models');
+
+const Schedule = sequelize.define('Schedule', {
+  clientId: { type: DataTypes.INTEGER, allowNull: false },
+  category: { type: DataTypes.STRING },
+  filePath: { type: DataTypes.STRING, allowNull: false },
+  startTime: { type: DataTypes.DATE, allowNull: false },
+  endTime: { type: DataTypes.DATE, allowNull: false },
+  position: { type: DataTypes.STRING }
+});
+
+module.exports = Schedule;
+
+// backend/models/Client.js
+const { DataTypes } = require('sequelize');
+const sequelize = require('../models');
+
+const Client = sequelize.define('Client', {
+  name: { type: DataTypes.STRING, allowNull: false },
+  category: { type: DataTypes.STRING },
+  status: { type: DataTypes.STRING },
+  lastActive: { type: DataTypes.DATE }
+});
+
+module.exports = Client;
+
+// backend/models/index.js
+const { Sequelize } = require('sequelize');
+const config = require('../config');
+
+const sequelize = new Sequelize(config.DB_NAME, config.DB_USER, config.DB_PASS, {
+  host: config.DB_HOST,
+  dialect: 'mariadb'
+});
+
+const User = require('./User');
+const Schedule = require('./Schedule');
+const Client = require('./Client');
+
+module.exports = sequelize;
+module.exports.User = User;
+module.exports.Schedule = Schedule;
+module.exports.Client = Client;

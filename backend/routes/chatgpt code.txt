@@ -1,0 +1,49 @@
+// backend/routes/authRoutes.js
+const express = require('express');
+const router = express.Router();
+const authController = require('../controllers/authController');
+
+router.post('/login', authController.login);
+router.post('/refresh', authController.refreshToken);
+router.post('/logout', authController.logout);
+
+module.exports = router;
+
+// backend/routes/scheduleRoutes.js
+const express = require('express');
+const router = express.Router();
+const scheduleController = require('../controllers/scheduleController');
+const authMiddleware = require('../middleware/authMiddleware');
+
+router.use(authMiddleware);
+router.get('/', scheduleController.getSchedules);
+router.post('/', scheduleController.createSchedule);
+router.put('/:id', scheduleController.updateSchedule);
+router.delete('/:id', scheduleController.deleteSchedule);
+
+module.exports = router;
+
+// backend/routes/clientRoutes.js
+const express = require('express');
+const router = express.Router();
+const clientController = require('../controllers/clientController');
+const authMiddleware = require('../middleware/authMiddleware');
+
+router.use(authMiddleware);
+router.get('/', clientController.getClients);
+router.post('/', clientController.registerClient);
+router.put('/:id', clientController.updateClient);
+router.delete('/:id', clientController.deleteClient);
+
+module.exports = router;
+
+// backend/routes/statsRoutes.js
+const express = require('express');
+const router = express.Router();
+const statsController = require('../controllers/statsController');
+const authMiddleware = require('../middleware/authMiddleware');
+
+router.use(authMiddleware);
+router.get('/', statsController.getStats);
+
+module.exports = router;
